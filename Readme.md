@@ -27,7 +27,7 @@ the notification mail would be sent to the chosen Telegram chats.
 ```
 docker run \
     --name smtp_to_telegram \
-    -e ST_TELEGRAM_CHAT_IDS=<CHAT_ID1>,<CHAT_ID2> \
+    -e ST_TELEGRAM_CHAT_IDS=[some@mail.substring:]<CHAT_ID1>,<CHAT_ID2> \
     -e ST_TELEGRAM_BOT_TOKEN=<BOT_TOKEN> \
     kostyaesmukov/smtp_to_telegram
 ```

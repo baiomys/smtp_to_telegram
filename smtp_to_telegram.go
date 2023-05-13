@@ -287,6 +287,18 @@ func SendEmailToTelegram(e *mail.Envelope,
 	}
 
 	for _, chatId := range strings.Split(telegramConfig.telegramChatIds, ",") {
+		toMail := ""
+                
+		if strings.Contains(chatId, ":") {
+                        parsedChatId := strings.Split(chatId, ":")
+                        toMail, chatId = parsedChatId[0], parsedChatId[1]
+                }
+                rcptMail:=JoinEmailAddresses(e.RcptTo)
+                logger.Info(toMail+":"+rcptMail)
+                if !strings.Contains(rcptMail, toMail) {
+                        continue
+                }
+		
 		sentMessage, err := SendMessageToChat(message, chatId, telegramConfig, &client)
 		if err != nil {
 			// If unable to send at least one message -- reject the whole email.

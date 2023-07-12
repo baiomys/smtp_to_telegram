@@ -1,0 +1,18 @@
+version: "3"
+services:
+  smtp_to_telegram:
+    build: .
+    container_name: smtp_to_tg
+    environment:
+      - ST_TELEGRAM_BOT_TOKEN=1111111111:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      - ST_TELEGRAM_CHAT_IDS= |-
+        mail1a@sms~CHAT_ID1,
+        mail2@sms~CHAT_ID2,
+        mail3@sms~CHAT_ID3,
+        mail4@sms~CHAT_ID4,
+        mail5@sms~CHAT_ID5,
+        mail6@sms~CHAT_ID6,
+        mail7@sms~CHAT_ID7
+    ports:
+      - "25:2525"  # SMTP
+    restart: unless-stopped

@@ -289,9 +289,10 @@ func SendEmailToTelegram(e *mail.Envelope,
 	for _, chatId := range strings.Split(telegramConfig.telegramChatIds, ",") {
 		toMail := ""
                 
-		if strings.Contains(chatId, ":") {
-                        parsedChatId := strings.Split(chatId, ":")
-                        toMail, chatId = parsedChatId[0], parsedChatId[1]
+		if strings.Contains(chatId, "~") {
+                        parsedChatId := strings.Split(chatId, "~")
+                //      toMail, chatId = parsedChatId[0], parsedChatId[1]
+			toMail, chatId = strings.Trim(parsedChatId[0],"\n "), strings.Trim(parsedChatId[1],"\n ")
                 }
                 rcptMail:=JoinEmailAddresses(e.RcptTo)
                 logger.Info(toMail+":"+rcptMail)

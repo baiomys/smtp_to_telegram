@@ -286,18 +286,22 @@ func SendEmailToTelegram(e *mail.Envelope,
 		Timeout: time.Duration(telegramConfig.telegramApiTimeoutSeconds*1000) * time.Millisecond,
 	}
 
+        tgMail := ""
+	
 	for _, chatId := range strings.Split(telegramConfig.telegramChatIds, ",") {
-		toMail := ""
-                
-		if strings.Contains(chatId, "~") {
-                        parsedChatId := strings.Split(chatId, "~")
-                //      toMail, chatId = parsedChatId[0], parsedChatId[1]
-			toMail, chatId = strings.Trim(parsedChatId[0],"\n "), strings.Trim(parsedChatId[1],"\n ")
-                }
-                rcptMail:=JoinEmailAddresses(e.RcptTo)
-                logger.Info(toMail+":"+rcptMail)
-                if !strings.Contains(rcptMail, toMail) {
-                        continue
+                if strings.Contains(chatId, ">") {
+                   smtpMail := JoinEmailAddresses(e.RcptTo)
+                   parsedChatId := strings.Split(chatId, ">")
+                   tgMail, chatId = strings.Trim(parsedChatId[0],"\n "), strings.Trim(parsedChatId[1],"\n ")
+//                  logger.Info(smtpMail+":"+tgMail)
+                   if !strings.Contains(smtpMail, tgMail) { continue }
+
+                } else if strings.Contains(chatId, "<") {
+                   smtpMail := e.MailFrom.String()
+                   parsedChatId := strings.Split(chatId, "<")
+                   tgMail, chatId = strings.Trim(parsedChatId[0],"\n "), strings.Trim(parsedChatId[1],"\n ")
+//                  logger.Info(smtpMail+":"+tgMail)
+                   if !strings.Contains(smtpMail, tgMail) { continue }
                 }
 		
 		sentMessage, err := SendMessageToChat(message, chatId, telegramConfig, &client)

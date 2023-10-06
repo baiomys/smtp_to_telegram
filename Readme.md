@@ -32,7 +32,7 @@ docker run \
     kostyaesmukov/smtp_to_telegram
 ```
 
-"<" sign between <pattern> and <chat_id> means From: address substring search, while ">" for To: address
+"<" sign between <email> and <chat_id> means From: address substring search, while ">" for To: address
 
 Assuming that your Email-sending software is running in docker as well,
 you may use `smtp_to_telegram:2525` as the target SMTP address.

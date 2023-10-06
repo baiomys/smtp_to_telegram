@@ -24,6 +24,8 @@ the notification mail would be sent to the chosen Telegram chats.
 4. Repeat steps 2 and 3 for each Telegram account which should receive the messages.
 5. Start a docker container:
 
+"<" sign between <email> and <chat_id> means From: address substring search, while ">" for To: address
+
 ```
 docker run \
     --name smtp_to_telegram \
@@ -31,8 +33,6 @@ docker run \
     -e ST_TELEGRAM_BOT_TOKEN=<BOT_TOKEN> \
     kostyaesmukov/smtp_to_telegram
 ```
-
-"<" sign between <email> and <chat_id> means From: address substring search, while ">" for To: address
 
 Assuming that your Email-sending software is running in docker as well,
 you may use `smtp_to_telegram:2525` as the target SMTP address.

@@ -24,7 +24,7 @@ the notification mail would be sent to the chosen Telegram chats.
 4. Repeat steps 2 and 3 for each Telegram account which should receive the messages.
 5. Start a docker container:
 
-"<" sign between <email> and <chat_id> means From: address substring search, while ">" for To: address
+"<" sign between mail and chat_id means From: address substring search, while ">" for To: address
 
 ```
 docker run \

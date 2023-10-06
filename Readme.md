@@ -27,10 +27,12 @@ the notification mail would be sent to the chosen Telegram chats.
 ```
 docker run \
     --name smtp_to_telegram \
-    -e ST_TELEGRAM_CHAT_IDS=some@mail.substring~<CHAT_ID1>,some@mail.substring~<CHAT_ID2> \
+    -e ST_TELEGRAM_CHAT_IDS=some@mail.substring<<CHAT_ID1>,some@mail.substring><CHAT_ID2>@<TOKEN> \
     -e ST_TELEGRAM_BOT_TOKEN=<BOT_TOKEN> \
     kostyaesmukov/smtp_to_telegram
 ```
+
+"<" sign between <pattern> and <chat_id> means From: address substring search, while ">" for To: address
 
 Assuming that your Email-sending software is running in docker as well,
 you may use `smtp_to_telegram:2525` as the target SMTP address.
@@ -42,13 +44,3 @@ The default Telegram message format is:
 From: {from}\\nTo: {to}\\nSubject: {subject}\\n\\n{body}\\n\\n{attachments_details}
 ```
 
-A custom format might be specified as well:
-
-```
-docker run \
-    --name smtp_to_telegram \
-    -e ST_TELEGRAM_CHAT_IDS=<CHAT_ID1>,<CHAT_ID2> \
-    -e ST_TELEGRAM_BOT_TOKEN=<BOT_TOKEN> \
-    -e ST_TELEGRAM_MESSAGE_TEMPLATE="Subject: {subject}\\n\\n{body}" \
-    kostyaesmukov/smtp_to_telegram
-```

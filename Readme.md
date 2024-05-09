@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/KostyaEsmukov/smtp_to_telegram?style=flat-square)][Go Report Card]
 [![License](https://img.shields.io/github/license/KostyaEsmukov/smtp_to_telegram.svg?style=flat-square)][License]
 
-[Docker Hub]:      https://hub.docker.com/r/kostyaesmukov/smtp_to_telegram
+[Docker Hub]:      https://hub.docker.com/r/coraxosm/smtp2tg
 [Go Report Card]:  https://goreportcard.com/report/github.com/KostyaEsmukov/smtp_to_telegram
 [License]:         https://github.com/KostyaEsmukov/smtp_to_telegram/blob/master/LICENSE
 
